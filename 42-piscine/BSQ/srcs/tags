@@ -1,0 +1,18 @@
+Mmain	main.c	/^int	main(int argc, char **argv)$/
+change_board	solve.c	/^void	change_board(int **d, t_point max)$/
+check_min	solve.c	/^int	check_min(int **d, int x, int y)$/
+dp_board	solve.c	/^void	dp_board(int **d, t_board_info *board_info)$/
+draw_square	main.c	/^void	draw_square(char **board, int **d, t_board_in/
+ft_atoi	libft.c	/^int	ft_atoi(char *str)$/
+ft_convert_board	file.c	/^int	**ft_convert_board(char **board, t_board_info /
+ft_get_board	file.c	/^char	**ft_get_board(int fd, t_board_info *board_in/
+ft_get_board_info	file.c	/^int	ft_get_board_info(t_board_info *board_info, ch/
+ft_read_line	file.c	/^char	*ft_read_line(int fd)$/
+ft_strcpy	libft.c	/^char	*ft_strcpy(char *dest, char *src)$/
+ft_strlen	libft.c	/^int	ft_strlen(char *str)$/
+ft_strncat	libft.c	/^char	*ft_strncat(char *dest, char *src, int nb)$/
+is_valid_board	valid.c	/^int	is_valid_board(char **board, t_board_info *boa/
+is_valid_info	valid.c	/^int	is_valid_info(t_board_info *board_info)$/
+print_board	main.c	/^void	print_board(char **board, t_board_info *board/
+set_default	solve.c	/^void	set_default(t_point *max, int **d, t_board_in/
+solve	main.c	/^void	solve(int fd, char ***board, int ***d, t_boar/

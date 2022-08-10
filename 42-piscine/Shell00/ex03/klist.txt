@@ -1,0 +1,5 @@
+Credentials cache: API:8A03FBC8-C5A6-4CCA-BF16-3078345B403B
+        Principal: hyuncpar@42SEOUL.KR
+
+  Issued                Expires               Principal
+May 16 16:22:18 2022  May 17 02:22:11 2022  krbtgt/42SEOUL.KR@42SEOUL.KR
