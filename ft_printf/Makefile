@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/10 19:03:38 by hyuncpar          #+#    #+#              #
-#    Updated: 2022/08/10 19:08:11 by hyuncpar         ###   ########.fr        #
+#    Created: 2022/08/25 14:07:01 by hyuncpar          #+#    #+#              #
+#    Updated: 2022/08/25 14:09:42 by hyuncpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libftprintf.a
-LIBFTDIR	= ./libft
-LIBFTFILE	= libft.a
+NAME		=	libftprintf.a
+LIBFTDIR	=	./Libft
+LIBFTFILE	=	libft.a
 
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
@@ -20,13 +20,12 @@ AR		= ar rcs
 RM		= rm -f
 
 SRCS	= ft_printf.c \
-			utils.c \
-			print_utils.c
-
-BSRCS	=
+			ft_parse_option.c\
+			ft_print_string.c \
+			ft_processing_num.c \
+			ft_print_num.c \
 
 OBJS	= $(SRCS:.c=.o)
-BOBJS	= $(BSRCS:.c=.o)
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -I.

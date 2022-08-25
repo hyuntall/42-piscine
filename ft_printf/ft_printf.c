@@ -5,31 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/10 15:04:56 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/08/10 19:20:57 by hyuncpar         ###   ########.fr       */
+/*   Created: 2022/08/23 20:50:19 by hyuncpar          #+#    #+#             */
+/*   Updated: 2022/08/25 20:06:29 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int	check_type(va_list ap, char *c)
+void	init_struct(info *info)
 {
-	int		cnt;
-
-	cnt = 0;
-	if (*c == 'c')
-		cnt += ft_putchar(va_arg(ap, int));
-	if (*c == 's')
-		cnt += ft_putstr(va_arg(ap, char *));
-	if (*c == '%')
-		cnt += ft_putchar('%');
-	return (cnt);
+	info->address = 0;
+	info->base_num = 10;
+	info->sign = 0;
+	info->uppercase = 0;
+	info->minus = 0;
+	info->zero = 0;
+	info->width = 0;
 }
 
 int	parse_format(va_list ap, char *format)
 {
-	int	result;
+	info	info;
+	int		result;
 
 	result = 0;
 	while (*format)
@@ -37,18 +34,16 @@ int	parse_format(va_list ap, char *format)
 		if (*format == '%')
 		{
 			format++;
-			// if (ft_strchr("#0 '+-"))
-			// if (ft_strchr("n*"))
-			if (ft_strchr("cspdiuxX%", *format))
-				result += check_type(ap, format);
+			init_struct(&info);
+			parse_flag(&info, &format);
+			parse_width(&info, &format, ap);
+			result += parse_type(&info, ap, *format);
 		}
 		else
-		{
-			ft_putchar(*format);
-			result++;
-		}
+			result += ft_print_char(*format);
 		format++;
 	}
+	write(1, &"\n", 1);
 	return (result);
 }
 
@@ -66,9 +61,7 @@ int	ft_printf(const char *format, ...)
 
 int	main()
 {
-	char *asd;
-
-	asd = "sad";
-	printf("\n%d", ft_printf("aaa%c %s %% %pad", 'i', "Sada", asd));
-	printf("\n%p", asd);
+	char *test = "sada";
+	printf("\n\n\n%d\n", ft_printf("dsa%---s %---c %5d %p", "asdas", 'G', 99, test));
+	printf("%-4.c", 'y');
 }
