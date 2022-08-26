@@ -6,7 +6,7 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:50:19 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/08/25 20:06:29 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:20:15 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ void	init_struct(info *info)
 {
 	info->address = 0;
 	info->base_num = 10;
-	info->sign = 0;
+	info->sign = 1;
 	info->uppercase = 0;
 	info->minus = 0;
+	info->plus = 0;
 	info->zero = 0;
+	info->hash = 0;
+	info->space = 0;
 	info->width = 0;
 }
 
@@ -43,7 +46,6 @@ int	parse_format(va_list ap, char *format)
 			result += ft_print_char(*format);
 		format++;
 	}
-	write(1, &"\n", 1);
 	return (result);
 }
 
@@ -61,7 +63,7 @@ int	ft_printf(const char *format, ...)
 
 int	main()
 {
-	char *test = "sada";
-	printf("\n\n\n%d\n", ft_printf("dsa%---s %---c %5d %p", "asdas", 'G', 99, test));
-	printf("%-4.c", 'y');
+	//char *test = "sada";
+	printf("\n%d\n", ft_printf("\n%d!\n", -112));
+	printf("\n%d\n", printf("\n%d!\n", -112));
 }

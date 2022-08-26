@@ -6,7 +6,7 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:59:56 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/08/25 19:45:00 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:13:51 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,21 @@ int	parse_atoi(char **s)
 	return (result);
 }
 
-void	parse_flag(info *info, char **format)
+void	parse_flag(info *info, char **c)
 {
-	
-	while (**format == '-' || **format == '0' || **format == '*')
+	while (**c == '-' || **c == '0' || **c == '*' || **c == '+' || **c == ' ')
 	{
-		if (**format == '0')
+		if (**c == '0')
 			info->zero = 1;
+		else if (**c == '+')
+			info->plus = 1;
+		else if (**c == '#')
+			info->hash = 1;
+		else if (**c == ' ')
+			info->space = 1;
 		else
 			info->minus = 1;
-		(*format)++;
+		(*c)++;
 	}
 }
 
@@ -53,7 +58,12 @@ void	parse_width(info *info, char **format, va_list ap)
 	{
 		info->width = va_arg(ap, int);
 		if (info->width < 0)
-		;
+		{
+			info->width *= -1;
+			info->minus = 1;
+			if (info->zero == 1)
+				info->zero = 0;
+		}
 		(*format)++;
 	}
 }

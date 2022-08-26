@@ -6,7 +6,7 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:28:47 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/08/25 20:05:14 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:13:55 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ typedef	struct _info{
 	int		address;
 	int		uppercase;
 	int		minus;
+	int		plus;
 	int		zero;
+	int		hash;
+	int		space;
 	int		width;
 }			info;
-
+# define BASE "0123456789abcdef"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
@@ -40,7 +43,6 @@ typedef	struct _info{
 # define DISABLE 0
 # define SMALL 32
 
-# define BASE "0123456789ABCDEF"
 
 
 int		ft_print_char(char c);

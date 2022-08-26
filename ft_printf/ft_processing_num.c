@@ -6,7 +6,7 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 21:35:00 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/08/25 19:44:44 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:59:03 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int	ft_print_di(info *info, va_list ap)
 	num = va_arg(ap, int);
 	if (num < 0)
 	{
-		info->sign = -1;
-		num -= num;
+		info->sign = 0;
+		num *= -1;
 		//(info->width)--;
+		
 	}
+	
 	cnt = ft_print_num(info, num);
 	return (cnt);
 }
