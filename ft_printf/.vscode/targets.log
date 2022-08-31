@@ -7,8 +7,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
+make: *** No rule to make target `ft_print_num.o', needed by `libftprintf.a'.  Stop.
 
-# Make data base, printed on Fri Aug 26 15:21:28 2022
+
+# Make data base, printed on Wed Aug 31 14:37:24 2022
  
 
 # Variables
@@ -44,15 +46,17 @@ VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 14)
 LIBFTDIR = ./Libft
 # environment
-VSCODE_LOGS = /Users/hyuncpar/Library/Application Support/Code/logs/20220826T152122
+VSCODE_LOGS = /Users/hyuncpar/Library/Application Support/Code/logs/20220831T143720
 # makefile (from `Makefile', line 28)
 OBJS = $(SRCS:.c=.o)
 # makefile (from `Makefile', line 15)
 LIBFTFILE = libft.a
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000ct500036j8/T/vscode-ipc-1da1c34d-8eae-4e20-8d9d-c15c241012d0.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000ct500036j8/T/vscode-ipc-da11bf71-7923-4925-bc1d-d36c387e861e.sock
 # environment
 PATH = /Users/hyuncpar/.brew/bin:/Users/hyuncpar/.brew/bin:/Users/hyuncpar/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+# environment
+LaunchInstanceID = 7FC4E44D-D055-4125-A249-E8D750DC696B
 # makefile (from `Makefile', line 19)
 AR = ar rcs
 # environment
@@ -62,7 +66,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.aEnndUZKr5/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.UlGNWu1NOu/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -124,19 +128,23 @@ MFLAGS = -Rrqp
 # environment
 MAIL = hyuncpar@student.42seoul.kr
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2140
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000007.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x19A28:0x3:0x33
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186fe
 # automatic
 ^F = $(notdir $^)
 # default
@@ -148,9 +156,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 87841
+VSCODE_PID = 8366
 # variable set hash-table stats:
-# Load=68/1024=7%, Rehash=0, Collisions=4/96=4%
+# Load=71/1024=7%, Rehash=0, Collisions=4/99=4%
 
 # Pattern-specific Variable Values
 
@@ -158,9 +166,9 @@ VSCODE_PID = 87841
 
 # Directories
 
-# . (device 16777225, inode 4767862): 20 files, no impossibilities.
+# . (device 16777225, inode 4767862): 19 files, no impossibilities.
 
-# 20 files, no impossibilities in 1 directories.
+# 19 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -173,8 +181,7 @@ all: libftprintf.a
 #  Command-line target.
 #  Implicit rule search has not been done.
 #  File does not exist.
-#  File has been updated.
-#  Successfully updated.
+#  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -186,7 +193,7 @@ all: libftprintf.a
 # Not a target:
 ft_printf.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-25 19:48:05
+#  Last modified 2022-08-26 17:31:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -210,9 +217,8 @@ Makefile:
 # Not a target:
 ft_print_num.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-25 19:49:59
-#  File has been updated.
-#  Successfully updated.
+#  File does not exist.
+#  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -292,8 +298,7 @@ ft_parse_option.o:
 libftprintf.a: ft_printf.o ft_parse_option.o ft_print_string.o ft_processing_num.o ft_print_num.o
 #  Implicit rule search has not been done.
 #  Last modified 2022-08-25 19:50:00
-#  File has been updated.
-#  Successfully updated.
+#  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 #  commands to execute (from `Makefile', line 34):
@@ -315,6 +320,6 @@ libftprintf.a: ft_printf.o ft_parse_option.o ft_print_string.o ft_processing_num
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Aug 26 15:21:28 2022
+# Finished Make data base on Wed Aug 31 14:37:24 2022
 
  

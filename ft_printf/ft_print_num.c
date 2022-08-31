@@ -6,7 +6,7 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 21:50:02 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/08/26 18:20:04 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 16:15:31 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ void	left_sort_str(info *info, char **result, long long num, int len)
 
 void	right_sort_str(info *info, char **result, long long num)
 {
-	printf("!!%d", info->width);
 	while (num)
 	{
 		(*result)[info->width--] = BASE[num % info->base_num] - info->uppercase;
 			num /= info->base_num;
 	}
-	printf("!!%d", info->width);
 	if (!info ->sign)
 		(*result)[info->width--] = '-';
 	if (info->sign && info->plus)
@@ -106,7 +104,7 @@ int	ft_lltoa(info *info, long long num)
 		left_sort_str(info, &result, num, len);
 	else
 		right_sort_str(info, &result, num);
-	cnt = ft_print_str(result);
+	cnt = ft_print_str(info, result);
 	free(result);
 	return (cnt);
 }
