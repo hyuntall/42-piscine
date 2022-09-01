@@ -6,13 +6,13 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 21:50:02 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/08/31 16:15:31 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:15:15 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	nbr_len(info *info, long long nbr)
+int	nbr_len(t_info *info, long long nbr)
 {
 	int	len;	
 
@@ -29,95 +29,86 @@ int	nbr_len(info *info, long long nbr)
 	return (len);
 }
 
-void	left_sort_str(info *info, char **result, long long num, int len)
+void	fill_array(t_info *info, long long num, char **result, int len)
 {
-	int	i;
+	char	*base;
 
-	i = 0;
-	if (!info->sign || info->plus)
-	{
-		if (!info->sign)
-			(*result)[i++] = '-';
-		if (info->sign && info->plus)
-			(*result)[i++] = '+';
-		len += 2;
-	}
-	if (info->address)
-	{
-		(*result)[i++] = '0';
-		(*result)[i++] = 'x';
-		len += 4;
-	}
+	if (info->uppercase)
+		base = XBASE;
+	else
+		base = BASE;
 	while (num)
 	{
-		(*result)[len - i++ - 1] = BASE[num % info->base_num] - info->uppercase;
-		num /= info-> base_num;
+		(*result)[len--] = base[num % info->base_num];
+		num /= info->base_num;
 	}
-	while (i < info->width + 1)
-		(*result)[i++] = ' ';
+	while (len > -1)
+		(*result)[len--] = '0';
+	if (info->address == 1)
+	{
+		(*result)[1] = 'x' + info->uppercase;
+		(*result)[0] = '0';
+	}
+	if (!info->sign)
+		(*result)[0] = '-';
+	else if (info->sign && info->plus)
+		(*result)[0] = '+';
+	else if (info->space)
+		(*result)[0] = ' ';
 }
 
-void	right_sort_str(info *info, char **result, long long num)
+int	ft_print_num(t_info *info, char *s)
 {
-	while (num)
+	int		result;
+	int		len;
+	char	c;
+
+	c = ' ';
+	len = ft_strlen(s);
+	if ((len > 0 && info->precision > len) \
+	|| (info->zero && info->precision > len))
+		c = '0';
+	if (s == NULL)
+		s = "(null)";
+	result = 0;
+	if (!info->minus)
+		while (info->width-- > len)
+			result += write(1, &c, 1);
+	while (len-- > 0)
 	{
-		(*result)[info->width--] = BASE[num % info->base_num] - info->uppercase;
-			num /= info->base_num;
+		result += write(1, s++, 1);
+		info->width--;
 	}
-	if (!info ->sign)
-		(*result)[info->width--] = '-';
-	if (info->sign && info->plus)
-		(*result)[info->width--] = '+';
-	if (info->address)
-	{
-		(*result)[info->width--] = 'x';
-		(*result)[info->width--] = '0';
-	}
-	while (info->width > -1)
-		(*result)[info->width--] = ' ';
+	while (info->width-- > 0)
+		result += write(1, " ", 1);
+	return (result);
 }
 
-int	ft_lltoa(info *info, long long num)
+int	ft_lltoa(t_info *info, long long num)
 {
 	char	*result;
 	int		len;
 	int		cnt;
-	int		i;
 
 	len = nbr_len(info, num);
-	i = 0;
-	if (info->width < len)
-	{
-		info->width = len;
-		if (!info->sign || info->plus)
-			info->width++;
-	}
-	result = (char *)malloc(sizeof(char) * (info->width + 1));
+	if ((info->dot && info->precision > len) \
+	|| (info->dot && info->precision == 0 && num == 0))
+		len = info->precision;
+	if (!info->sign || (info->sign && info->plus) || info->space)
+		len += 1;
+	if (info->address)
+		len += 2;
+	if ((info->dot && info->precision < 0 && info->zero && info->width > len) \
+	|| (info->zero && info->width > len && !info->dot))
+		len = info->width;
+	result = (char *)malloc(sizeof(char) * (len + 1));
 	if (!result)
 		return (0);
-	result[info->width--] = '\0';
-	while (i < info->width)
-		result[i++] = ' ';
+	result[len--] = '\0';
 	if (num == 0)
-		result[0] = '0';
-	if (info->minus)
-		left_sort_str(info, &result, num, len);
-	else
-		right_sort_str(info, &result, num);
-	cnt = ft_print_str(info, result);
+		result[len--] = '0';
+	fill_array(info, num, &result, len);
+	cnt = ft_print_num(info, result);
 	free(result);
-	return (cnt);
-}
-
-
-int	ft_print_num(info *info, long long num)
-{
-	int	cnt;
-	int	len;
-
-	cnt = 0;
-	len = nbr_len(info, num);
-	cnt += ft_lltoa(info, num);
-
 	return (cnt);
 }

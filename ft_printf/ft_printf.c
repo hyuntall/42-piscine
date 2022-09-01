@@ -6,13 +6,13 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:50:19 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/08/31 16:49:11 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:13:21 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_struct(info *info)
+void	init_struct(t_info *info)
 {
 	info->address = 0;
 	info->base_num = 10;
@@ -30,7 +30,7 @@ void	init_struct(info *info)
 
 int	parse_format(va_list ap, char *format)
 {
-	info	info;
+	t_info	info;
 	int		result;
 
 	result = 0;

@@ -6,7 +6,7 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:59:56 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/08/31 17:29:10 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:16:18 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	parse_atoi(char **s)
 	return (result);
 }
 
-void	parse_flag(info *info, char **c)
+void	parse_flag(t_info *info, char **c)
 {
-	while (**c == '-' || **c == '0' || **c == '+' || **c == ' ')
+	while (**c == '-' || **c == '0' || **c == '+' || **c == ' ' || **c == '#')
 	{
 		if (**c == '0')
 			info->zero = 1;
@@ -37,13 +37,16 @@ void	parse_flag(info *info, char **c)
 			info->hash = 1;
 		else if (**c == ' ')
 			info->space = 1;
-		else
+		else if (**c == '-')
+		{
 			info->minus = 1;
+			info->zero = 0;
+		}
 		(*c)++;
 	}
 }
 
-void	parse_precision(info *info, char **format, va_list ap)
+void	parse_precision(t_info *info, char **format, va_list ap)
 {
 	if (**format == '.')
 	{
@@ -59,7 +62,7 @@ void	parse_precision(info *info, char **format, va_list ap)
 	}
 }
 
-void	parse_width(info *info, char **format, va_list ap)
+void	parse_width(t_info *info, char **format, va_list ap)
 {
 	if (ft_isdigit(**format))
 		info->width = parse_atoi(format);
@@ -77,9 +80,10 @@ void	parse_width(info *info, char **format, va_list ap)
 	}
 }
 
-int	parse_type(info *info, va_list ap, char c)
+int	parse_type(t_info *info, va_list ap, char c)
 {
 	int	cnt;
+
 	cnt = 0;
 	if (c == 'c')
 		cnt += ft_print_char(info, va_arg(ap, int));
@@ -91,5 +95,9 @@ int	parse_type(info *info, va_list ap, char c)
 		cnt += ft_print_di(info, ap);
 	if (c == 'x' || c == 'X')
 		cnt += ft_print_xX(info, ap, c);
+	if (c == 'u')
+		cnt += ft_print_u(info, ap);
+	if (c == '%' || c == '%')
+		cnt += ft_print_char(info, '%');
 	return (cnt);
 }
