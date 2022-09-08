@@ -6,7 +6,7 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:47:56 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/09/06 21:36:30 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/09/08 22:39:07 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strdup(const char *s1)
 {
-	int		size;
-	int		i;
-	char	*tmp;
+	size_t		size;
+	int			i;
+	char		*tmp;
 
 	i = -1;
 	size = ft_strlen(s1);
@@ -67,13 +67,14 @@ int	in_next_line(char *s)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	if (!s)
 		return (0);
-	while (s[++i])
-		if (s[i] == '\n')
-			return (i);
-	return (0);
+	while (s[i] && s[i] != '\n')
+		i++;
+	if (!s[i])
+		return (-1);
+	return (i);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
