@@ -6,7 +6,7 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:09:53 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/10/13 21:23:33 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:38:02 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	node_insert(t_stack *stack, int num)
 	t_node	*new_node;
 
 	if (!is_unique_list(stack, num))
-		print_error(stack);
+		print_error(stack, "unique error");
 	new_node = ft_lstnew(num);
 	stack->a_bottom->next = new_node;
 	new_node->prev = stack->a_bottom;

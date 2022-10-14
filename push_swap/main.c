@@ -6,7 +6,7 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:29:04 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/10/13 22:40:47 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/10/14 17:28:46 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,33 @@ void	init(t_stack *stack)
 	stack->b_bottom = 0;
 }
 
+void	small_size_sort(t_stack *stack)
+{
+	int	first;
+	int	second;
+	int	third;
+
+	first = stack->a_top->num;
+	second = stack->a_top->next->num;
+	third = stack->a_bottom->num;
+	if (third > first && first > second)
+		swap_a(stack);
+	else if (first > second && second > third)
+	{
+		swap_a(stack);
+		reverse_rotate_a(stack);
+	}
+	else if (first > third && third > second)
+		rotate_a(stack);
+	else if (second > third && third > first)
+	{
+		swap_a(stack);
+		rotate_a(stack);
+	}
+	else
+		reverse_rotate_a(stack);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	stack;
@@ -30,28 +57,22 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	init(&stack);
-	// 파라미터 파싱 하는 함수
 	if (!argv_to_stack(&stack, ++argv))
 	{
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	swap_a(&stack);
-	pusb_b(&stack);
-	pusb_b(&stack);
-	printf("top: %d\n", stack.a_top->num);
-	printf("bottom: %d\n", stack.a_bottom->num);
-	printf("size: %d\n", stack.a_size);
-
-	t_node *node;
-	node = stack.b_top;
-	while (node)
+	if (stack_is_sort(&stack))
 	{
-		printf("list %d\n", node->num);
-		node = node->next;
+		clear_stack(&stack);
+		return (0);
 	}
-	// 파싱된 함수의 배열을 정렬하는 함수
-	// push_swap
-	system("leaks a.out");
+	if (stack.a_size == 2)
+		swap_a(&stack);
+	else if (stack.a_size == 3)
+		small_size_sort(&stack);
+	else
+		stack_sort(&stack);
+	//system("leaks a.out");
 	return (0);
 }

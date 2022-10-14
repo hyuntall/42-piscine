@@ -6,13 +6,13 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 20:52:18 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/10/13 21:41:24 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:50:18 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_error(t_stack	*stack)
+void	clear_stack(t_stack *stack)
 {
 	t_node	*node;
 	t_node	*temp;
@@ -24,7 +24,13 @@ void	print_error(t_stack	*stack)
 		free(node);
 		node = temp;
 	}
+}
+
+void	print_error(t_stack	*stack, char *str)
+{
+	clear_stack(stack);
 	//node_remove(&node);
 	write(2, "Error\n", 6);
+	write(1, str, ft_strlen(str));
 	exit(1);
 }

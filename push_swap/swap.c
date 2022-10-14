@@ -6,7 +6,7 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 21:03:20 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/10/13 22:14:57 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:26:05 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	swap_b(t_stack *stack)
 	write(1, "sb\n", 3);
 }
 
-void	swap_swap(t_stack *stack)
+void	swap_all(t_stack *stack)
 {
 	int		first;
 	int		second;

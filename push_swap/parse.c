@@ -6,7 +6,7 @@
 /*   By: hyuncpar <hyuncpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:42:06 by hyuncpar          #+#    #+#             */
-/*   Updated: 2022/10/13 21:15:49 by hyuncpar         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:47:56 by hyuncpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_space(char c)
 		return (0);
 }
 
-int	ft_atoll(char *str)
+int	ft_atoll(t_stack *stack, char *str)
 {
 	long long	num;
 	int			sign;
@@ -32,22 +32,18 @@ int	ft_atoll(char *str)
 	while (is_space(*str))
 		str++;
 	if (!(*str >= '0' && *str <= '9') && !(*str == '-'))
-	{
-		write(2, "Error\n", 6);
-		exit(0);
-	}
+		print_error(stack, "not number");
 	if (*str == '-')
 	{
 		sign = 0 - sign;
 		str++;
 	}
+	if (*str < '0' && *str > '9')
+		print_error(stack, "not number2");
 	while (*str >= '0' && *str <= '9')
 		num = num * 10 + *str++ - '0';
 	if (num > 2147483647 || num < -2147483648)
-	{
-		write(2, "Error\n", 6);
-		exit(0);
-	}
+		print_error(stack, "overflow");
 	return (sign * num);
 }
 
@@ -86,9 +82,9 @@ int	argv_to_stack(t_stack *stack, char **argv)
 	while (sstack[++i])
 	{
 		if (!stack->a_top)
-			first_insert(stack, ft_atoll(sstack[i]));
+			first_insert(stack, ft_atoll(stack, sstack[i]));
 		else
-			node_insert(stack, ft_atoll(sstack[i]));
+			node_insert(stack, ft_atoll(stack, sstack[i]));
 		stack->a_size += 1;
 	}
 	i = 0;
